@@ -1,4 +1,4 @@
 ---
 # vars file for ec2_role
-myuser: "AKIAYJFEVDOF37NYNGU5"
-mypass: "d3UCxc61DzZd9GWKxGLbKZPHYNUDG+PrT/Y/iGgE"
+myuser: "your access key"
+mypass: "your secret key"
