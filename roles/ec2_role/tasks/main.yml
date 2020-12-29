@@ -1,0 +1,45 @@
+---
+# tasks file for ec2_role
+- name: Provisioning of ec2 instance on aws
+  ec2:
+     aws_access_key: "{{ myuser }}"
+     aws_secret_key: "{{ mypass }}"
+     key_name: key_test
+     instance_type: t2.micro
+     image: ami-0447a12f28fddb066
+     assign_public_ip: yes
+     region: ap-south-1
+     count: 3
+     group_id: sg-0072f14f87e45a371
+     vpc_subnet_id: subnet-0bcc019ca54051696
+     instance_tags:
+                 Name: web
+
+- name: Add host for further contact
+  add_host:
+           name: "web"
+           groups: "webserver"
+
+- name: Provisioning of LB ec2 on aws
+  ec2:
+     aws_access_key: "{{ myuser }}"
+     aws_secret_key: "{{ mypass }}"
+     key_name: key_test
+     instance_type: t2.micro
+     image: ami-0447a12f28fddb066
+     assign_public_ip: yes
+     region: ap-south-1
+     count: 1
+     group_id: sg-0072f14f87e45a371
+     vpc_subnet_id: subnet-0bcc019ca54051696
+     instance_tags:
+                 Name: LoadBalancer
+
+- name: Add host for further contact
+  add_host:
+           name: "LoadBalancer"
+           groups: "LB"
+
+
+
+     
